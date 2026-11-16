@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --night: #0b0712;
+  --ink: #f6f1ff;
+  --sl-green: #1eb53a;
+  --sl-blue: #0072c6;
+  --sunset: #ff7a1a;
+  --hot: #ff2e88;
+  --gold: #ffc83d;
+}
+
+@theme inline {
+  --color-night: var(--night);
+  --color-ink: var(--ink);
+  --color-sl-green: var(--sl-green);
+  --color-sl-blue: var(--sl-blue);
+  --color-sunset: var(--sunset);
+  --color-hot: var(--hot);
+  --color-gold: var(--gold);
+  --font-display: var(--font-sora);
+  --font-sans: var(--font-dmsans);
+}
+
+html,
+body {
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--font-dmsans), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+.font-display {
+  font-family: var(--font-sora), system-ui, sans-serif;
+}
+
+.glass {
+  background: rgba(20, 12, 32, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floaty { animation: none; }
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  @page {
+    margin: 8mm;
+  }
+}
+
+/* Dark map to match the app: tiles are inverted, pins and controls keep their own colours. */
+.leaflet-container {
+  background: #15101d !important;
+  font-family: inherit;
+}
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.95) saturate(0.7);
+}
+.leaflet-control-attribution {
+  background: rgba(11, 7, 18, 0.7) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  margin-bottom: 84px;
+}
+.leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.leaflet-bar a {
+  background: rgba(20, 12, 32, 0.8) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}

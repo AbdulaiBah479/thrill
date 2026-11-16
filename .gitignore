@@ -1,0 +1,10 @@
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets and installed packages
+.env
+.env.*
+!.env.example
+node_modules/
